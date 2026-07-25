@@ -10,4 +10,8 @@ jobs:
               uses: actions/checkout@v3
             - name: Run a one-line script
               run: echo Hello, world!
+            - name: list files
+              run: ls -la
+            - name: Readme file
+              run: cat README.md
 
