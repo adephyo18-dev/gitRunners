@@ -17,7 +17,10 @@ jobs:
     test_job_2:
         needs: build_job_1
         runs-on: ubuntu-latest
-        steps:   
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v3
+
             - name: Search for the word "dragon" in dragon.txt
               run: grep -i "dragon" dragon.txt
             
@@ -28,8 +31,6 @@ jobs:
         needs: test_job_2
         runs-on: ubuntu-latest
         steps:
-            - name: Checkout repo
-              uses: actions/checkout@v3
 
             - name: Display the contents of dragon.txt
               run: cat dragon.txt
