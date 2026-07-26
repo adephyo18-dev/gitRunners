@@ -8,12 +8,6 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v3
-            - name: Install Cowsay Program
-              run: |
-                sudo apt-get update
-                sudo apt-get install -y cowsay
-                cowsay -f dragon "Run for cover! The dragon is coming!">> dragon.txt
-                grep -i "dragon" dragon.txt
-                cat dragon.txt
-                ls -ltra
 
+            - name: Execute shell script to generate ASCII artwork
+              run: bash ./ascii-script..sh
