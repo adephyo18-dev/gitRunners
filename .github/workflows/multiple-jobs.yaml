@@ -2,11 +2,6 @@ name: multiple-jobs workflow
 
 on: push
 
-env:
-    CONTAINER_REGISTRY: ghcr.io
-    DOCKER_IMAGE_NAME: my-docker-image
-    DOCKER_USERNAME: ${{ github.actor }}
-    DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 jobs:
 
     build_job_1:
