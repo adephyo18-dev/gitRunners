@@ -5,7 +5,7 @@ on: push
 env:
     CONTAINER_REGISTRY: ghcr.io
     DOCKER_IMAGE_NAME: my-docker-image
-    DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+    # DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
@@ -17,10 +17,10 @@ jobs:
 
             - name: Print environment variables
               run: |
-                echo "CONTAINER_REGISTRY: $CONTAINER_REGISTRY"
-                echo "DOCKER_IMAGE_NAME: $DOCKER_IMAGE_NAME"
-                echo "DOCKER_USERNAME: $DOCKER_USERNAME"
-                echo "DOCKER_PASSWORD: $DOCKER_PASSWORD"
+                echo docker build -t $CONTAINER_REGISTRY/$DOCKER_IMAGE_NAME:latest .
+                echo docker login $CONTAINER_REGISTRY -u ${{ vars.DOCKER_USERNAME }} -p $DOCKER_PASSWORD
+                echo docker push $CONTAINER_REGISTRY/$DOCKER_IMAGE_NAME:latest
+               
     # deploy_job:
     #     needs: build_job
     #     runs-on: ubuntu-latest
