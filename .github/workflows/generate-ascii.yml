@@ -3,7 +3,7 @@ name: generate-ascii artwork
 on: push
 
 jobs:
-    first_job:
+    ascii_artwork_job:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout repo
