@@ -5,8 +5,8 @@ on: push
 env:
     CONTAINER_REGISTRY: ghcr.io
     DOCKER_IMAGE_NAME: my-docker-image
-    DOCKER_USERNAME: ${{ github.actor }}
-    DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+    DOCKER_USERNAME: $DOCKER_USERNAME
+    DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
     build_job:
@@ -15,6 +15,17 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
 
+            - name: Print environment variables
+              run: |
+                echo "CONTAINER_REGISTRY: $CONTAINER_REGISTRY"
+                echo "DOCKER_IMAGE_NAME: $DOCKER_IMAGE_NAME"
+                echo "DOCKER_USERNAME: $DOCKER_USERNAME"
+                echo "DOCKER_PASSWORD: $DOCKER_PASSWORD"
+    deploy_job:
+        needs: build_job
+        runs-on: ubuntu-latest
+        steps:
+ 
             - name: Print environment variables
               run: |
                 echo "CONTAINER_REGISTRY: $CONTAINER_REGISTRY"
